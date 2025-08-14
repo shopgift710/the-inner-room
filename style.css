@@ -12,7 +12,16 @@ body {
     align-items: center;
     background: url('images/background.png') no-repeat center center fixed;
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: #fff;
+}
+
+/* Mobile background fix */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
 }
 
 /* Glassmorphic form container */
@@ -20,8 +29,8 @@ body {
     width: 100%;
     max-width: 400px;
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.4); /* Transparent black overlay */
-    backdrop-filter: blur(10px); /* Glass effect */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
@@ -66,7 +75,7 @@ input::placeholder, textarea::placeholder {
     color: #aaa;
 }
 
-/* Dropdown fix - dark grey with white text */
+/* Dropdown fix */
 select {
     background-color: #333;
     color: #fff;
