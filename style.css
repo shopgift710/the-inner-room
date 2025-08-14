@@ -9,7 +9,8 @@ style_css = """body {
 
 .left {
     flex: 1;
-    background: url('images/background.png') center/cover no-repeat;
+    background: url('images/background.png') center center / cover no-repeat;
+    min-height: 100vh; /* Ensures the image fills height */
 }
 
 .right {
@@ -64,6 +65,24 @@ input::placeholder, textarea::placeholder {
     color: #aaa;
 }
 
+/* Dropdown styling */
+select {
+    background-color: #333; /* Dark grey background */
+    color: white; /* White text for visibility */
+    border: 1px solid #555;
+}
+
+select option {
+    background-color: #333;
+    color: white;
+}
+
+select:focus {
+    outline: none;
+    border-color: #c5a572; /* Gold focus border */
+}
+
+/* Button styling */
 button {
     width: 100%;
     padding: 0.75rem;
