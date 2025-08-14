@@ -1,53 +1,121 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+/* Global styles */
 body {
+    font-family: 'Lora', serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background: url('your-background-image.jpg') no-repeat center center fixed;
-    background-size: cover;
-    position: relative;
-    height: 100vh;
-}
-
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* overlay opacity */
-    z-index: 0;
-}
-
-.container {
+    min-height: 100vh;
     display: flex;
-    justify-content: center; /* horizontal center */
-    align-items: center; /* vertical center */
-    height: 100vh;
-    position: relative;
-    z-index: 1; /* keep above overlay */
+    justify-content: center;
+    align-items: center;
+    background: url('images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
 }
 
-form {
-    background: transparent; /* remove block */
-    padding: 20px;
-    border-radius: 10px;
+/* Glassmorphic form container */
+.form-container {
     width: 100%;
     max-width: 400px;
-    color: white;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4); /* Transparent black overlay */
+    backdrop-filter: blur(10px); /* Glass effect */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-form input, form select, form textarea {
-    background-color: rgba(50, 50, 50, 0.8);
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 10px;
+/* Logo */
+.logo {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Tagline */
+.tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Inputs, Textarea, Select */
+input, textarea, select {
     width: 100%;
-    border-radius: 5px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Lora', serif;
 }
 
-form select option {
-    background-color: #2e2e2e; /* dropdown bg */
-    color: white; /* dropdown text color */
+/* Placeholder */
+input::placeholder, textarea::placeholder {
+    color: #aaa;
+}
+
+/* Dropdown fix - dark grey with white text */
+select {
+    background-color: #333;
+    color: #fff;
+}
+
+select option {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(to right, #c5a572, #e3c892);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Footer text */
+.footer-text {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #ccc;
+    text-align: center;
+}
+
+.footer-text a {
+    color: #c5a572;
+    text-decoration: none;
+}
+
+.footer-text a:hover {
+    text-decoration: underline;
+}
+
+/* Thank you message */
+.thank-you {
+    display: none;
+    color: #c5a572;
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
 }
