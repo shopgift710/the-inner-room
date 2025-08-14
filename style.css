@@ -1,64 +1,71 @@
+/* Base reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
 body {
     font-family: 'Lora', serif;
     display: flex;
-    min-height: 100vh;
+    min-height: 100vh;      /* Fallback */
+    min-height: 100svh;     /* iOS Safari safe viewport */
+    min-height: 100dvh;     /* Modern dynamic viewport */
     background-color: #000;
     color: #fff;
     margin: 0;
 }
 
-/* Left side background */
+/* Left panel (desktop only). On mobile we hide it so the form is centered */
 .left {
     flex: 1;
     background: url('images/background.png') center center / cover no-repeat;
-    min-height: 100vh;
 }
 
-/* Right side background with overlay */
+/* Right panel with background, overlay, and perfect centering */
 .right {
     flex: 1;
-    background: url('images/background.png') center center / cover no-repeat;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+    display: grid;
+    place-items: center;     /* Centers form horizontally & vertically */
+    padding: 24px;
+    background: url('images/background.png') center center / cover no-repeat;
+    /* Prevent jitter on iOS when address bar shows/hides */
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
 }
 
-/* Overlay effect */
+/* Dark overlay for readability over the background image */
 .right::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6); /* 60% dark overlay */
+    background: rgba(0, 0, 0, 0.6);
     z-index: 0;
 }
 
-/* Transparent form container */
+/* Transparent form that floats above overlay */
 .form-container {
-    max-width: 400px;
-    width: 100%;
+    position: relative;
+    z-index: 1;
+    width: clamp(300px, 90vw, 480px); /* Mobile-first responsive width */
     padding: 2rem;
     border-radius: 12px;
-    z-index: 1; /* Float above overlay */
-    position: relative;
-    background: transparent; /* No background box */
+    background: transparent; /* No black box */
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px); /* Keep text sharp; set to 4px if you want subtle glass effect */
 }
 
-.logo {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
+/* Branding */
+.logo { text-align: center; margin-bottom: 1rem; }
 .tagline {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-family: 'Playfair* Display', 'Playfair Display', serif;
+    font-size: clamp(18px, 2.6vw, 22px);
     font-weight: 700;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
     color: #fff;
 }
 
+/* Labels & inputs */
 label {
     display: block;
     margin-bottom: 0.5rem;
@@ -67,68 +74,58 @@ label {
 
 input, textarea, select {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.9rem 0.9rem;
     margin-bottom: 1rem;
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
+    border-radius: 10px;
     color: #fff;
     font-family: 'Lora', serif;
+    font-size: 16px; /* Prevent iOS zoom-on-focus */
+    line-height: 1.2;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-input::placeholder, textarea::placeholder {
-    color: #aaa;
-}
+input::placeholder, textarea::placeholder { color: #aaa; }
 
-/* Dropdown styling */
+/* Dropdown styling (readable on mobile) */
 select {
     background-color: #333;
-    color: white;
+    color: #fff;
     border: 1px solid #555;
 }
-
 select option {
     background-color: #333;
-    color: white;
+    color: #fff;
+}
+select:focus, input:focus, textarea:focus {
+    border-color: #c5a572;          /* Gold focus */
+    box-shadow: 0 0 0 3px rgba(197,165,114,0.25);
 }
 
-select:focus {
-    outline: none;
-    border-color: #c5a572;
-}
-
-/* Button styling */
+/* Button */
 button {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.9rem;
     background: linear-gradient(to right, #c5a572, #e3c892);
     border: none;
-    border-radius: 8px;
-    font-weight: bold;
+    border-radius: 10px;
+    font-weight: 700;
     color: #000;
     cursor: pointer;
     font-family: 'Lora', serif;
+    font-size: 16px;
+    transition: transform 0.06s ease, opacity 0.2s ease;
 }
+button:hover { opacity: 0.95; }
+button:active { transform: translateY(1px); }
 
-button:hover {
-    opacity: 0.9;
-}
-
-.footer-text {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: #888;
-    text-align: center;
-}
-
-.footer-text a {
-    color: #c5a572;
-    text-decoration: none;
-}
-
-.footer-text a:hover {
-    text-decoration: underline;
-}
+/* Footer & success message */
+.footer-text { margin-top: 1rem; font-size: 0.9rem; color: #bbb; text-align: center; }
+.footer-text a { color: #c5a572; text-decoration: none; }
+.footer-text a:hover { text-decoration: underline; }
 
 .thank-you {
     display: none;
@@ -136,4 +133,37 @@ button:hover {
     text-align: center;
     margin-top: 1rem;
     font-weight: bold;
+}
+
+/* --------- Responsive tweaks --------- */
+
+/* Tablet & below: hide left panel, use single-column layout */
+@media (max-width: 1024px) {
+    .left { display: none; }
+    .right {
+        flex: 1 1 100%;
+        width: 100%;
+        padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+        /* Keep perfect centering */
+        display: grid;
+        place-items: center;
+        background-position: center top; /* Nicer crop on tall phones */
+    }
+    .form-container { padding: 1.25rem; }
+}
+
+/* Small phones: tighten spacing slightly */
+@media (max-width: 380px) {
+    .form-container { width: 92vw; padding: 1rem; }
+    .tagline { margin-bottom: 1.25rem; }
+}
+
+/* For very short viewports (landscape phones), allow scroll instead of squish */
+@media (max-height: 560px) {
+    .right {
+        align-items: start;
+        place-items: start center;
+        overflow-y: auto;
+    }
+    .form-container { margin-top: 24px; margin-bottom: 24px; }
 }
