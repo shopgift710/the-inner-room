@@ -1,4 +1,4 @@
-style_css = """body {
+body {
     font-family: 'Lora', serif;
     display: flex;
     min-height: 100vh;
@@ -7,27 +7,42 @@ style_css = """body {
     margin: 0;
 }
 
+/* Left side background */
 .left {
     flex: 1;
     background: url('images/background.png') center center / cover no-repeat;
-    min-height: 100vh; /* Ensures the image fills height */
+    min-height: 100vh;
 }
 
+/* Right side background with overlay */
 .right {
     flex: 1;
-    background: #0d0d0d;
+    background: url('images/background.png') center center / cover no-repeat;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
 }
 
+/* Overlay effect */
+.right::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); /* 60% dark overlay */
+    z-index: 0;
+}
+
+/* Transparent form container */
 .form-container {
     max-width: 400px;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6);
     padding: 2rem;
     border-radius: 12px;
+    z-index: 1; /* Float above overlay */
+    position: relative;
+    background: transparent; /* No background box */
 }
 
 .logo {
@@ -67,8 +82,8 @@ input::placeholder, textarea::placeholder {
 
 /* Dropdown styling */
 select {
-    background-color: #333; /* Dark grey background */
-    color: white; /* White text for visibility */
+    background-color: #333;
+    color: white;
     border: 1px solid #555;
 }
 
@@ -79,7 +94,7 @@ select option {
 
 select:focus {
     outline: none;
-    border-color: #c5a572; /* Gold focus border */
+    border-color: #c5a572;
 }
 
 /* Button styling */
@@ -122,4 +137,3 @@ button:hover {
     margin-top: 1rem;
     font-weight: bold;
 }
-"""
