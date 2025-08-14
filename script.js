@@ -1,7 +1,6 @@
 // Populate cities dynamically
 const cityList = [
-    "Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", 
-    "Pune", "Kolkata", "Other"
+    "Bangalore", "Mumbai", "Delhi", "Other"
 ];
 
 const cityDropdown = document.getElementById('city');
@@ -16,21 +15,30 @@ cityList.forEach(city => {
 document.getElementById('signupForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const mobile = document.getElementById('MobileNo').value;
+    const email = document.getElementById('email');
+    const mobile = document.getElementById('MobileNo');
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const mobilePattern = /^\d{10}$/;
 
-    if (!emailPattern.test(email)) {
-        alert('Please enter a valid email address.');
+    // Email validation
+    if (!emailPattern.test(email.value)) {
+        email.setCustomValidity("Enter Valid Email");
+        email.reportValidity();
         return;
+    } else {
+        email.setCustomValidity("");
     }
 
-    if (mobile && !mobilePattern.test(mobile)) {
-        alert('Please enter a valid 10-digit mobile number.');
+    // Mobile validation (mandatory now)
+    if (!mobilePattern.test(mobile.value)) {
+        mobile.setCustomValidity("Please enter valid Number");
+        mobile.reportValidity();
         return;
+    } else {
+        mobile.setCustomValidity("");
     }
 
+    // If validation passes
     document.getElementById('signupForm').reset();
     document.getElementById('thankYouMessage').style.display = 'block';
 });
