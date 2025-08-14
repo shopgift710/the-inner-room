@@ -10,17 +10,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('images/background.png') no-repeat center center fixed;
+    background: url('images/background.png') no-repeat center center;
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     color: #fff;
 }
 
-/* Mobile background fix */
+/* Make background responsive */
 @media (max-width: 768px) {
     body {
         background-attachment: scroll;
+        background-size: cover;
     }
 }
 
@@ -75,7 +74,7 @@ input::placeholder, textarea::placeholder {
     color: #aaa;
 }
 
-/* Dropdown fix */
+/* Dropdown styling */
 select {
     background-color: #333;
     color: #fff;
