@@ -1,0 +1,106 @@
+style_css = """body {
+    font-family: 'Lora', serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+}
+
+.left {
+    flex: 1;
+    background: url('images/background.jpg') center/cover no-repeat;
+}
+
+.right {
+    flex: 1;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.form-container {
+    max-width: 400px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Lora', serif;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #aaa;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(to right, #c5a572, #e3c892);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.footer-text {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #888;
+    text-align: center;
+}
+
+.footer-text a {
+    color: #c5a572;
+    text-decoration: none;
+}
+
+.footer-text a:hover {
+    text-decoration: underline;
+}
+
+.thank-you {
+    display: none;
+    color: #c5a572;
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+"""
