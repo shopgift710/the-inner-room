@@ -1,1 +1,9 @@
+[build]
+  publish = "public"
+  command = ""
 
+# Redirect all paths to index.html (useful for SPA or future routing)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
