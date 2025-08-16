@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("signupForm");
   const popup = document.getElementById("thankYouPopup");
   const closePopup = document.getElementById("closePopup");
- 
+
   if (!form) return;
 
   form.addEventListener("submit", function (event) {
@@ -10,17 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    // Ensure Netlify always sees form-name
-    if (!formData.has("form-name")) {
-      formData.append("form-name", "signup");
-    }
-
-    fetch("/", {
+    // Send to Netlify Function
+    fetch("/.netlify/functions/signup", {
       method: "POST",
-      body: new URLSearchParams(formData).toString(),
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formData // ✅ send FormData directly (supports file upload)
     })
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Server response:", data);
+
         // Show popup
         popup.style.display = "block";
         form.reset(); // clear form
