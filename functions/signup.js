@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form[name='signup']");
-  const thankYouMessage = document.getElementById("thankYouMessage");
+  const form = document.getElementById("signupForm");
+  const popup = document.getElementById("thankYouPopup");
+  const closePopup = document.getElementById("closePopup");
 
   if (!form) return;
 
@@ -9,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    // ✅ Ensure form-name is always included
+    // Ensure Netlify always sees form-name
     if (!formData.has("form-name")) {
       formData.append("form-name", "signup");
     }
@@ -20,12 +21,25 @@ document.addEventListener("DOMContentLoaded", function () {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     })
       .then(() => {
-        form.style.display = "none"; // hide form
-        thankYouMessage.style.display = "block"; // show message
+        // Show popup
+        popup.style.display = "block";
+        form.reset(); // clear form
       })
       .catch((error) => {
         alert("Something went wrong, please try again!");
         console.error("Form submission error:", error);
       });
+  });
+
+  // Close popup handler
+  closePopup.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+
+  // Close popup if user clicks outside content
+  window.addEventListener("click", function (event) {
+    if (event.target === popup) {
+      popup.style.display = "none";
+    }
   });
 });
