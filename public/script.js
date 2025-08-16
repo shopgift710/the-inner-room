@@ -12,7 +12,7 @@ cityList.forEach(city => {
     cityDropdown.appendChild(option);
 });
 
-// Form validation and submission
+// Form validation + submission with popup
 document.getElementById('signupForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -33,7 +33,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     }
 
     if (!emailPattern.test(email)) {
-        alert('Enter Valid Email.');
+        alert('Enter a valid email.');
         return;
     }
 
@@ -48,7 +48,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     }
 
     if (!mobilePattern.test(mobile)) {
-        alert('Please enter valid Number.');
+        alert('Please enter a valid 10-digit number.');
         return;
     }
 
@@ -62,18 +62,10 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
         return;
     }
 
-    document.getElementById('signupForm').reset();
-    document.getElementById('thankYouMessage').style.display = 'block';
-});
-
-
-document.getElementById("signupForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    // Show popup
+    // ✅ If everything is valid → show popup
     document.getElementById("thankYouPopup").style.display = "flex";
 
-    // Reset form
+    // Reset form after showing popup
     document.getElementById("signupForm").reset();
 });
 
@@ -82,11 +74,10 @@ document.getElementById("closePopup").addEventListener("click", function() {
     document.getElementById("thankYouPopup").style.display = "none";
 });
 
-// Close popup on outside click
+// Close popup when clicking outside the popup content
 window.addEventListener("click", function(event) {
     let popup = document.getElementById("thankYouPopup");
     if (event.target === popup) {
         popup.style.display = "none";
     }
 });
-
