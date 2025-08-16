@@ -7,6 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
     "Pune", "Kolkata", "Other"
   ];
 
+  const cityDropdown = document.getElementById('city');
+  cityList.forEach(city => {
+      let option = document.createElement('option');
+      option.value = city;
+      option.textContent = city;
+      cityDropdown.appendChild(option);
+  });
   if (!form) return;
 
   form.addEventListener("submit", function (event) {
