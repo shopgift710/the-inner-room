@@ -65,3 +65,28 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     document.getElementById('signupForm').reset();
     document.getElementById('thankYouMessage').style.display = 'block';
 });
+
+
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Show popup
+    document.getElementById("thankYouPopup").style.display = "flex";
+
+    // Reset form
+    document.getElementById("signupForm").reset();
+});
+
+// Close popup on X click
+document.getElementById("closePopup").addEventListener("click", function() {
+    document.getElementById("thankYouPopup").style.display = "none";
+});
+
+// Close popup on outside click
+window.addEventListener("click", function(event) {
+    let popup = document.getElementById("thankYouPopup");
+    if (event.target === popup) {
+        popup.style.display = "none";
+    }
+});
+
