@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("signupForm");
   const popup = document.getElementById("thankYouPopup");
   const closePopup = document.getElementById("closePopup");
+  const cityList = [
+    "Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", 
+    "Pune", "Kolkata", "Other"
+  ];
 
   if (!form) return;
 
