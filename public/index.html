@@ -17,11 +17,9 @@
       </div>
       <div class="tagline">Where Connections Become Experiences</div>
 
-      <!-- ✅ Netlify-enabled form -->
-      <form name="signup" id="signupForm" method="POST" data-netlify="true">
-        <!-- Hidden input required for Netlify -->
-        <input type="hidden" name="form-name" value="signup" />
-
+      <!-- ✅ Custom Netlify Function form -->
+      <form id="signupForm" method="POST" action="/.netlify/functions/signup" enctype="multipart/form-data">
+        
         <label for="name">Full Name</label>
         <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
