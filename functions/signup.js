@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
+    // ✅ Ensure form-name is always included
+    if (!formData.has("form-name")) {
+      formData.append("form-name", "signup");
+    }
+
     fetch("/", {
       method: "POST",
       body: new URLSearchParams(formData).toString(),
